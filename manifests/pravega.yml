@@ -3,7 +3,7 @@ name: pravega
 
 releases:
 - name: pravega
-  version: 0.0.1
+  version: latest
 
 stemcells:
 - alias: default

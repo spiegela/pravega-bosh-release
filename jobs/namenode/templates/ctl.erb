@@ -10,14 +10,13 @@ export RUN_DIR=/var/vcap/sys/run/namenode
 export HADOOP_GROUP=hdfs
 
 export JSVC_HOME=/var/vcap/packages/hadoop/commons-daemon
-export HADOOP_CONF_DIR=/var/vcap/sys/run/namenode/config
+export HADOOP_CONF_DIR=/var/vcap/jobs/namenode/config
 
 export DFS_NAME_DIR=<%= p('namenode.name_dir') %>
 export FS_CHECKPOINT_DIR=<%= p('namenode.checkpoint_dir') %>
 export DFS_DATA_DIR=<%= p('datanode.data_dir') %>
 
-# Set the hostname
-hostname <%= index %>.<%= name %>.<%= spec.networks.methods(false).grep(/[^=]$/).first.to_s %>.<%= spec.deployment %>.<%= spec.dns_domain_name %>
+export PATH=$PATH:/var/vcap/packages/hadoop/bin
 
 case $1 in
 
@@ -25,7 +24,6 @@ case $1 in
     mkdir -p $LOG_DIR $RUN_DIR $HADOOOP_CONF_DIR
     chown -R vcap:vcap $LOG_DIR $RUN_DIR $HADOOOP_CONF_DIR
 
-    pid_guard $PIDFILE $JOB_NAME
     echo $$ > $PIDFILE
 
     # Create hadoop supergroup
@@ -44,11 +42,18 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE
+    if [ -f $PIDFILE ]; then
+      kill -9 `cat $PIDFILE` || true
+      rm -f $PIDFILE
+    fi
+    ;;
+
+  status)
+    exec chpst -u vcap:vcap hdfs dfsadmin -report
     ;;
 
   *)
-    echo "Usage: $0 {start|stop}"
+    echo "Usage: $0 {start|stop|status}"
     exit 1
     ;;
 
