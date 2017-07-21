@@ -1,0 +1,4 @@
+---
+name: bookkeeper
+files:
+- bookkeeper/bookkeeper-server-4.4.0-bin.tar.gz

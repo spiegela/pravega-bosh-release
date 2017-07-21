@@ -1,0 +1,4 @@
+---
+name: zookeeper
+files:
+- zookeeper/zookeeper-3.5.3-beta.tar.gz

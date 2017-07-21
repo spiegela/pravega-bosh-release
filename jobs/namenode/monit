@@ -1,0 +1,5 @@
+check process namenode
+  with pidfile /var/vcap/sys/run/namenode/pid
+  start program "/var/vcap/jobs/namenode/bin/ctl start"
+  stop program "/var/vcap/jobs/namenode/bin/ctl stop"
+  group vcap

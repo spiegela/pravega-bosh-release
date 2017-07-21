@@ -1,0 +1,4 @@
+---
+name: jdk8
+files:
+- jdk8/jdk-8u131-linux-x64.tar.gz

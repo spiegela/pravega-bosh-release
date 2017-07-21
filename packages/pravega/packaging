@@ -1,0 +1,4 @@
+set -e # exit immediately if a simple command exits with a non-zero status
+
+tar xfv pravega/pravega-0.1.0-1404.04e62df.tgz --strip-components 1 -C $BOSH_INSTALL_TARGET
+chown -R vcap:vcap $BOSH_INSTALL_TARGET

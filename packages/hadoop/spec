@@ -1,0 +1,4 @@
+---
+name: hadoop
+files:
+- hadoop/hadoop-2.7.1.tar.gz

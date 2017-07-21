@@ -1,0 +1,20 @@
+jdk8/jdk-8u131-linux-x64.tar.gz:
+  object_id: 0a58a92c-bd4e-471d-82b5-0eaa523fb430
+  sha: c2a5582c049beb5c7af6b87a469bc53b759b7b87
+  size: 185540433
+zookeeper/zookeeper-3.5.3-beta.tar.gz:
+  object_id: a8bd4ad7-942f-4885-ae35-91fb07a3f897
+  sha: c3d0053328f3b480e83074d2245e146aad11961e
+  size: 42630656
+hadoop/hadoop-2.7.1.tar.gz:
+  object_id: 1f96f1ac-a6d5-425f-8e92-fcbbd9e22f51
+  sha: 8aa2e1e8dbe0efeb2e98ac24c0eae37c5f94764c
+  size: 210606807
+bookkeeper/bookkeeper-server-4.4.0-bin.tar.gz:
+  object_id: '09715b83-1e69-46c4-9aff-7f22fc16d167'
+  sha: 8d020d9fd747d2edce7fb1d4fde51aabc7334c2a
+  size: 9890319
+pravega/pravega-0.1.0-1404.04e62df.tgz:
+  object_id: 451f3994-36f8-4f4c-b35e-f14b4801bb1d
+  sha: adf83cca124d2c1eb24058ede3575d5d2e84b44f
+  size: 80862120
