@@ -1,4 +1,8 @@
-# BOSH Release for [Pravega](http://pravega.io) Streaming Storage
+# BOSH Release for [Pravega](http://pravega.io) Streaming Storage [WIP]
+
+## Current Status
+
+This is a work in progress. Right now, I'm just building up some of the pre-reqs, and working my way towards actual Pravega.
 
 ## Usage
 
