@@ -1,23 +1,24 @@
 ---
-name: namenode
+name: datanode
 
 packages:
-- jdk8
-- hadoop
+  - jdk8
+  - hadoop
 
 provides:
 - name: conn
-  type: namenode
+  type: datanode
   properties:
   - dfs.port
-- name: namenodes
-  type: namenodes
-  properties:
-  - dfs.port
-
-consumes:
+  - datanode.port
 - name: datanodes
   type: datanodes
+  properties:
+  - datanode.port
+
+consumes:
+- name: namenodes
+  type: namenodes
 
 templates:
   ctl.erb: bin/ctl
@@ -27,7 +28,7 @@ templates:
   hadoop-policy.xml: config/hadoop-policy.xml
   hdfs-site.xml.erb: config/hdfs-site.xml
   log4j.properties: config/log4j.properties
-  slaves.erb: config/slaves
+  slaves: config/slaves
   masters.erb: config/masters
   hadoop-metrics2.properties: config/hadoop-metrics2.properties
 

@@ -7,7 +7,8 @@ export PIDFILE=/var/vcap/sys/run/namenode/pid
 
 export LOG_DIR=/var/vcap/sys/log/namenode
 export RUN_DIR=/var/vcap/sys/run/namenode
-export HADOOP_GROUP=hdfs
+export HADOOP_GROUP=vcap
+export HADOOP_LOG_DIR=$LOG_DIR
 
 export JSVC_HOME=/var/vcap/packages/hadoop/commons-daemon
 export HADOOP_CONF_DIR=/var/vcap/jobs/namenode/config
@@ -25,9 +26,6 @@ case $1 in
     chown -R vcap:vcap $LOG_DIR $RUN_DIR $HADOOOP_CONF_DIR
 
     echo $$ > $PIDFILE
-
-    # Create hadoop supergroup
-    getent group $HADOOP_GROUP &>/dev/null || groupadd $HADOOP_GROUP
 
     # Create and format namenode directory
     if [ ! -d $DFS_NAME_DIR ]; then

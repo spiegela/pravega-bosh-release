@@ -1,0 +1,65 @@
+#!/bin/bash
+
+set -e
+
+export JAVA_HOME=/var/vcap/packages/jdk8/jdk
+export PIDFILE=/var/vcap/sys/run/datanode/pid
+
+export LOG_DIR=/var/vcap/sys/log/datanode
+export RUN_DIR=/var/vcap/sys/run/datanode
+export HADOOP_GROUP=vcap
+export HADOOP_LOG_DIR=$LOG_DIR
+
+export JSVC_HOME=/var/vcap/packages/hadoop/commons-daemon
+export HADOOP_CONF_DIR=/var/vcap/jobs/datanode/config
+
+export DFS_DATA_DIR=<%= p('datanode.data_dir') %>
+
+export PATH=$PATH:/var/vcap/packages/hadoop/bin
+
+case $1 in
+
+  start)
+    mkdir -p $LOG_DIR $RUN_DIR $HADOOOP_CONF_DIR
+    chown -R vcap:vcap $LOG_DIR $RUN_DIR $HADOOOP_CONF_DIR
+
+    echo $$ > $PIDFILE
+
+    # Create hadoop supergroup
+    getent group $HADOOP_GROUP &>/dev/null || groupadd $HADOOP_GROUP
+
+    # Create datanode directory
+    if [ ! -d $DFS_DATA_DIR ]; then
+      mkdir -p $DFS_DATA_DIR
+      chown -R vcap:vcap $DFS_DATA_DIR;
+      chmod -R 750 $DFS_DATA_DIR;
+    fi
+
+    # Create domain socket path
+    if [ ! -d /var/run/hdfs ]; then
+      mkdir -p /var/run/hdfs
+      chown -R vcap:vcap /var/run/hdfs
+    fi
+
+    # Start datanode
+    exec chpst -u vcap:vcap hdfs datanode >>$LOG_DIR/$JOB_NAME.stdout.log 2>>$LOG_DIR/$JOB_NAME.stderr.log
+    ;;
+
+  stop)
+    if [ -f $PIDFILE ]; then
+      kill -9 `cat $PIDFILE` || true
+      rm -f $PIDFILE
+    fi
+    ;;
+
+  status)
+    exec chpst -u vcap:vcap hdfs dfsadmin -report
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+    exit 1
+    ;;
+
+esac
+exit 0

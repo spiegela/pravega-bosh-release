@@ -19,6 +19,8 @@ for jar_dir in $(ls -d /var/vcap/packages/*/*/*.jar); do
   export CLASSPATH=${jar_dir}:$CLASSPATH
 done
 
+chown -R vcap:vcap $ZOOCFGDIR
+
 case $1 in
 
   start)

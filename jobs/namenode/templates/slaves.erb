@@ -1,4 +1,5 @@
-<%# datanodes = link('datanodes') %>
-<%# datanodes.instances.each do |instance| %>
-<%#= instance.address %>
-<%# end %>
+<%= spec.address %>:<%= p('datanode.port') %>
+<% datanodes = link('datanodes') %>
+<% datanodes.instances.each do |instance| %>
+<%= instance.address %>
+<% end %>

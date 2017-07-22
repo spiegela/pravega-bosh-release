@@ -31,21 +31,21 @@ instance_groups:
   networks:
   - name: default
 
-# - name: pravega
-#   azs: [z1, z2, z3]
-#   instances: 3
-#   jobs:
-#   - name: zookeeper
-#     release: pravega
-#     properties: {}
-#   - name: datanode
-#     release: pravega
-#     properties: {}
-#   vm_type: default
-#   stemcell: default
-#   persistent_disk: 10240
-#   networks:
-#   - name: default
+- name: pravega
+  azs: [z1, z2, z3]
+  instances: 3
+  jobs:
+  - name: zookeeper
+    release: pravega
+    properties: {}
+  - name: datanode
+    release: pravega
+    properties: {}
+  vm_type: default
+  stemcell: default
+  persistent_disk: 10240
+  networks:
+  - name: default
 
 # - name: smoke-tests
 #   azs: [z1]

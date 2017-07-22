@@ -1,11 +1,48 @@
+<% namenodes = link('namenodes') %>
+<% namenode = namenodes.instances.first %>
 <configuration>
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://<%= spec.address %>:<%= p('dfs.port') %></value>
+    <value>hdfs://<%= namenode.address %>:<%= namenodes.p('dfs.port') %></value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hcat.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hcat.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hue.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hue.hosts</name>
+    <value>*</value>
   </property>
   <property>
     <name>hadoop.security.authentication</name>
     <value>simple</value>
+  </property>
+  <property>
+    <name>hadoop.security.auth_to_local</name>
+    <value>
+      RULE:[2:$1@$0]([rn]m@.*)s/.*/yarn/
+      RULE:[2:$1@$0](jhs@.*)s/.*/mapred/
+      RULE:[2:$1@$0]([nd]n@.*)s/.*/hdfs/
+      RULE:[2:$1@$0](hm@.*)s/.*/hbase/
+      RULE:[2:$1@$0](rs@.*)s/.*/hbase/
+      DEFAULT
+    </value>
   </property>
   <property>
     <name>hadoop.security.authorization</name>
