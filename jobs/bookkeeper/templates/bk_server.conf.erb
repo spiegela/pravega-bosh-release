@@ -1,116 +1,116 @@
-<% zk = link('zookeepers') %>
+<% zk = link('zookeepers') -%>
 zkServers=<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join(",") %>
 bookiePort=<%= p('bookie_port') %>
 journalDirectory=<%= p('journal_directory') %>
 ledgerDirectories=<%= p('ledger_directories') %>
-<% if_p('index_directories') do |p| %>
-indexDirectories=<%= p %>
-<% end %>
-<% if_p('bookie_death_watch_interval') do |p| %>
-bookieDeathWatchInterval=<%= + p %>
-<% end %>
-<% if_p('gc_wait_time') do |p| %>
-gcWaitTime=<%= + p %>
-<% end %>
-<% if_p('flush_interval') do |p| %>
-flushInterval=<%= + p %>
-<% end %>
-<% if_p('num_add_worker_threads') do |p| %>
-numAddWorkerThreads=<%= + p %>
-<% end %>
-<% if_p('num_read_worker_threads') do |p| %>
-numReadWorkerThreads=<%= + p %>
-<% end %>
-<% if_p('nio.server_tcp_delay') do |p| %>
-nio.serverTcpDelay=<%= + p %>
-<% end %>
-<% if_p('journal_max_size_mb') do |p| %>
-journalMaxSizeMB=<%= + p %>
-<% end %>
-<% if_p('journal_max_backups') do |p| %>
-journalMaxBackups=<%= + p %>
-<% end %>
-<% if_p('journal_pre_alloc_size_mb') do |p| %>
-journalPreAllocSizeMB=<%= + p %>
-<% end %>
-<% if_p('journal_write_buffer_size_kb') do |p| %>
-journalWriteBufferSizeKB=<%= + p %>
-<% end %>
-<% if_p('journal_remove_from_page_cache') do |p| %>
-journalRemoveFromPageCache=<%= + p %>
-<% end %>
-<% if_p('journal_adaptive_group_writes') do |p| %>
-journalAdaptiveGroupWrites=<%= + p %>
-<% end %>
-<% if_p('journal_max_group_wait_msec') do |p| %>
-journalMaxGroupWaitMSec=<%= + p %>
-<% end %>
-<% if_p('journal_buffered_writes_threshold') do |p| %>
-journalBufferedWritesThreshold=<%= + p %>
-<% end %>
-<% if_p('journal_flush_when_queue_empty') do |p| %>
-journalFlushWhenQueueEmpty=<%= + p %>
-<% end %>
-<% if_p('num_journal_callback_threads') do |p| %>
-numJournalCallbackThreads=<%= + p %>
-<% end %>
-<% if_p('open_file_limit') do |p| %>
-openFileLimit=<%= + p %>
-<% end %>
-<% if_p('page_size') do |p| %>
-pageSize=<%= + p %>
-<% end %>
-<% if_p('page_limit') do |p| %>
-pageLimit=<%= + p %>
-<% end %>
-<% if_p('ledger_manager_type') do |p| %>
-ledgerManagerType=<%= + p %>
-<% end %>
-<% if_p('zk_ledgers_root_path') do |p| %>
-zkLedgersRootPath=<%= + p %>
-<% end %>
-<% if_p('log_size_limit') do |p| %>
-logSizeLimit=<%= + p %>
-<% end %>
-<% if_p('entry_log_file_preallocation_enabled') do |p| %>
-entryLogFilePreallocationEnabled=<%= + p %>
-<% end %>
-<% if_p('read_buffer_size_bytes') do |p| %>
-readBufferSizeBytes=<%= + p %>
-<% end %>
-<% if_p('write_buffer_size_bytes') do |p| %>
-writeBufferSizeBytes=<%= + p %>
-<% end %>
-<% if_p('minor_compaction_interval') do |p| %>
-minorCompactionInterval=<%= + p %>
-<% end %>
-<% if_p('minor_compaction_threshold') do |p| %>
-minorCompactionThreshold=<%= + p %>
-<% end %>
-<% if_p('major_compaction_interval') do |p| %>
-majorCompactionInterval=<%= + p %>
-<% end %>
-<% if_p('major_compaction_threshold') do |p| %>
-majorCompactionThreshold=<%= + p %>
-<% end %>
-<% if_p('compaction_max_outstanding_requests') do |p| %>
-compactionMaxOutstandingRequests=<%= + p %>
-<% end %>
-<% if_p('compaction_rate') do |p| %>
-compactionRate=<%= + p %>
-<% end %>
-<% if_p('enable_statistics') do |p| %>
-enableStatistics=<%= + p %>
-<% end %>
-<% if_p('open_ledger_rereplication_grace_period') do |p| %>
-openLedgerRereplicationGracePeriod=<%= + p %>
-<% end %>
-<% if_p('read_only_mode_enabled') do |p| %>
-readOnlyModeEnabled=<%= + p %>
-<% end %>
-<% if_p('disk_usage_threshold') do |p| %>
-diskUsageThreshold=<%= + p %>
-<% end %>
-<% if_p('disk_check_interval') do |p| %>
-diskCheckInterval=<%= + p('disk_check_interval') %>
-<% end %>
+<% if_p('index_directories') do |p| -%>
+indexDirectories=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('bookie_death_watch_interval') do |p| -%>
+bookieDeathWatchInterval=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('gc_wait_time') do |p| -%>
+gcWaitTime=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('flush_interval') do |p| -%>
+flushInterval=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('num_add_worker_threads') do |p| -%>
+numAddWorkerThreads=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('num_read_worker_threads') do |p| -%>
+numReadWorkerThreads=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('nio.server_tcp_delay') do |p| -%>
+nio.serverTcpDelay=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_max_size_mb') do |p| -%>
+journalMaxSizeMB=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_max_backups') do |p| -%>
+journalMaxBackups=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_pre_alloc_size_mb') do |p| -%>
+journalPreAllocSizeMB=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_write_buffer_size_kb') do |p| -%>
+journalWriteBufferSizeKB=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_remove_from_page_cache') do |p| -%>
+journalRemoveFromPageCache=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_adaptive_group_writes') do |p| -%>
+journalAdaptiveGroupWrites=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_max_group_wait_msec') do |p| -%>
+journalMaxGroupWaitMSec=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_buffered_writes_threshold') do |p| -%>
+journalBufferedWritesThreshold=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('journal_flush_when_queue_empty') do |p| -%>
+journalFlushWhenQueueEmpty=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('num_journal_callback_threads') do |p| -%>
+numJournalCallbackThreads=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('open_file_limit') do |p| -%>
+openFileLimit=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('page_size') do |p| -%>
+pageSize=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('page_limit') do |p| -%>
+pageLimit=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('ledger_manager_type') do |p| -%>
+ledgerManagerType=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('zk_ledgers_root_path') do |p| -%>
+zkLedgersRootPath=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('log_size_limit') do |p| -%>
+logSizeLimit=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('entry_log_file_preallocation_enabled') do |p| -%>
+entryLogFilePreallocationEnabled=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('read_buffer_size_bytes') do |p| -%>
+readBufferSizeBytes=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('write_buffer_size_bytes') do |p| -%>
+writeBufferSizeBytes=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('minor_compaction_interval') do |p| -%>
+minorCompactionInterval=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('minor_compaction_threshold') do |p| -%>
+minorCompactionThreshold=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('major_compaction_interval') do |p| -%>
+majorCompactionInterval=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('major_compaction_threshold') do |p| -%>
+majorCompactionThreshold=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('compaction_max_outstanding_requests') do |p| -%>
+compactionMaxOutstandingRequests=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('compaction_rate') do |p| -%>
+compactionRate=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('enable_statistics') do |p| -%>
+enableStatistics=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('open_ledger_rereplication_grace_period') do |p| -%>
+openLedgerRereplicationGracePeriod=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('read_only_mode_enabled') do |p| -%>
+readOnlyModeEnabled=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('disk_usage_threshold') do |p| -%>
+diskUsageThreshold=<%= "#{p}\n" -%>
+<% end -%>
+<% if_p('disk_check_interval') do |p| -%>
+diskCheckInterval=<%= "#{p}\n" -%>
+<% end -%>

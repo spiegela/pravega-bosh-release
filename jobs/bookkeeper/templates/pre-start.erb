@@ -4,9 +4,9 @@ export LOG_DIR=/var/vcap/sys/log/bookkeeper
 export RUN_DIR=/var/vcap/sys/run/bookkeeper
 export BK_JRNL_DIR=<%= p('journal_directory') %>
 export BK_LDGR_DIRS=<%= p('ledger_directories') %>
-<% if_p('index_directories') do |p| %>
-export BK_INDX_DIRS=<%= p %>
-<% end %>
+<% if_p('index_directories') do |p| -%>
+export BK_INDX_DIRS=<%= "#{p}\n" %>
+<% end -%>
 
 # Prepare directories
 

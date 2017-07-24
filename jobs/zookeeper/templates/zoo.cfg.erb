@@ -1,9 +1,7 @@
-<% peers = link('peers') %>
-
-<% peers.instances.each do |instance| %>
+<% peers = link('peers') -%>
+<% peers.instances.each do |instance| -%>
 server.<%= instance.index+1 %>=<%= instance.address %>:<%= peers.p('quorum_port') %>:<%= peers.p('leader_election_port') %>
-<% end %>
-
+<% end -%>
 autopurge.purgeInterval=<%= p('autopurge_purge_interval') %>
 autopurge.snapRetainCount=<%= p('autopurge_snap_retain_count') %>
 clientPort=<%= peers.p('client_port') %>
