@@ -43,6 +43,9 @@ instance_groups:
   - name: bookkeeper
     release: pravega
     properties: {}
+  - name: pravega-controller
+    release: pravega
+    properties: {}
   vm_type: default
   stemcell: default
   persistent_disk: 10240

@@ -1,0 +1,40 @@
+<% zk = link('zookeepers') -%>
+config {
+  controller.server {
+    zk {
+      url = "<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join(",") %>"
+      retryIntervalMS = <%= p('controller.server.zk.retry_interval_ms') %>
+      maxRetries = <%= p('controller.server.zk.max_retries') %>
+    }
+    port = <%= p('controller.server.port') %>
+    asyncTaskPoolSize = <%= p('controller.server.async_task_pool_size') %>
+    serviceHostIp = <%= p('controller.server.service_host_ip') %>
+    serviceHostPort = <%= p('controller.server.service_host_port') %>
+    publishedRPCHost = <%= p('controller.server.published_rpc_host') %>
+    publishedRPCPort = <%= p('controller.server.published_rpc_port') %>
+    cluster = <%= p('controller.server.cluster') %>
+    hostMonitorEnabled = <%= p('controller.server.host_monitor_enabled') %>
+    minRebalanceInterval = <%= p('controller.server.min_rebalance_interval') %>
+    store {
+      host {
+        containerCount = <%= p('controller.server.store.host.container_count') %>
+      }
+    }
+    rest {
+      serverIp = <%= p('controller.server.rest.server_ip') %>
+      serverPort = <%= p('controller.server.rest.server_port') %>
+    }
+    transaction {
+      maxLeaseValue = <%= p('controller.server.transaction.max_lease_value') %>
+      maxScaleGracePeriod = <%= p('controller.server.transaction.max_scale_grace_period') %>
+    }
+    internal {
+      scale {
+        streamName = <%= p('controller.server.internal.scale.stream_name') %>
+        readerGroup {
+          name = <%= p('controller.server.internal.scale.reader_group') %>
+        }
+      }
+    }
+  }
+}

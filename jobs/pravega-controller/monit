@@ -1,0 +1,5 @@
+check process pravega-controller
+  with pidfile /var/vcap/sys/run/pravega-controller/pid
+  start program "/var/vcap/jobs/pravega-controller/bin/ctl start"
+  stop program "/var/vcap/jobs/pravega-controller/bin/ctl stop"
+  group vcap
