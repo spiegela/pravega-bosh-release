@@ -1,0 +1,42 @@
+#!/bin/bash
+
+export LOG_DIR=/var/vcap/sys/log/bookkeeper
+export RUN_DIR=/var/vcap/sys/run/bookkeeper
+export BK_JRNL_DIR=<%= p('journal_directory') %>
+export BK_LDGR_DIRS=<%= p('ledger_directories') %>
+<% if_p('index_directories') do |p| %>
+export BK_INDX_DIRS=<%= p %>
+<% end %>
+
+# Prepare directories
+
+for dir in $LOG_DIR $RUN_DIR $BK_JRNL_DIR; do
+  mkdir -p ${dir}
+  chown vcap:vcap ${dir}
+  chmod 700 ${dir}
+done
+
+for dirlist in $BK_LDGR_DIRS $BK_INDX_DIRS; do
+  IFS=","
+  for dir in $dirlist; do
+    mkdir -p ${dir}
+    chown vcap:vcap ${dir}
+    chmod 700 ${dir}
+  done
+done
+
+# Bookkeeper is very picky about the hosts file. We must set
+# the hostname to the public ip address for bookkeeper to bind
+# correctly.
+
+HOSTNAME=`hostname`
+HOSTENTRY="<%= spec.address %> $HOSTNAME"
+grep --quiet "^$HOSTENTRY$" /etc/hosts
+if [ $? != 0 ] ; then
+  echo "updating hosts file"
+  /bin/cp /etc/hosts /var/vcap/jobs/bookkeeper/config/hosts.bak
+  /bin/sed -e "s| $HOSTNAME||g" /var/vcap/jobs/bookkeeper/config/hosts.bak > /etc/hosts
+  echo $HOSTENTRY >> /etc/hosts
+else
+  echo "hosts file already up to date."
+fi

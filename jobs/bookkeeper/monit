@@ -1,0 +1,5 @@
+check process bookkeeper
+  with pidfile /var/vcap/sys/run/bookkeeper/pid
+  start program "/var/vcap/jobs/bookkeeper/bin/ctl start"
+  stop program "/var/vcap/jobs/bookkeeper/bin/ctl stop"
+  group vcap

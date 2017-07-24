@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+export LOG_DIR=/var/vcap/sys/log/bookkeeper
+export RUN_DIR=/var/vcap/sys/run/bookkeeper
+export PIDFILE=/var/vcap/sys/run/bookkeeper/pid
+export JAVA_HOME=/var/vcap/packages/jdk8/jdk
+export PATH=$JAVA_HOME/bin:$PATH
+export BOOKIE_CONF=/var/vcap/jobs/bookkeeper/config/bk_server.conf
+export JMXDISABLE=1
+
+case $1 in
+
+  start)
+    echo $$ > $PIDFILE
+
+    set +e
+    # Prepare zookeeper don't exit on error
+    /var/vcap/packages/bookkeeper/bin/bookkeeper shell metaformat -nonInteractive
+
+    # Prepare bookie local filesystem
+    /var/vcap/packages/bookkeeper/bin/bookkeeper shell bookieformat -nonInteractive
+    set -e
+
+    exec chpst -u vcap:vcap \
+      /var/vcap/packages/bookkeeper/bin/bookkeeper bookie \
+      >>/var/vcap/sys/log/bookkeeper/stdout.log \
+      2>>/var/vcap/sys/log/bookkeeper/stderr.log
+    ;;
+
+  stop)
+    if [ -f $PIDFILE ]; then
+      kill -9 `cat $PIDFILE` || true
+      rm -f $PIDFILE
+    fi
+    ;;
+
+  status)
+    set +e
+    echo "Readwrite Nodes:"
+    /var/vcap/packages/bookkeeper/bin/bookkeeper shell listbookies -rw
+    echo "Readonly Nodes:"
+    /var/vcap/packages/bookkeeper/bin/bookkeeper shell listbookies -ro
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+    exit 1
+    ;;
+
+esac
+exit 0
