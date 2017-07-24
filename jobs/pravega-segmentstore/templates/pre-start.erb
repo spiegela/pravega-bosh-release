@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export LOG_DIR=/var/vcap/sys/log/pravega-segmentstore
+export RUN_DIR=/var/vcap/sys/run/pravega-segmentstore
+
+for dir in $LOG_DIR $RUN_DIR; do
+  mkdir -p ${dir}
+  chown vcap:vcap ${dir}
+  chmod 700 ${dir}
+done

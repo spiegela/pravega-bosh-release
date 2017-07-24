@@ -1,0 +1,149 @@
+---
+name: pravega-segmentstore
+
+packages:
+- pravega
+- jdk8
+
+templates:
+  ctl.erb: bin/ctl
+  pre-start.erb: bin/pre-start
+  config.properties.erb: config/config.properties
+  logback.xml: config/logback.xml
+
+consumes:
+- name: zookeepers
+  type: zookeeper_peers
+- name: namenodes
+  type: namenodes
+
+properties:
+  pravegaservice.cluster_name:
+    default: pravega-cluster
+    description: Name of the cluster to which this instance of the SegmentStore belongs.
+  pravegaservice.container_count:
+    default: 4
+    description: Number of Segment Containers in the system. This value must be the same across all SegmentStore instances in this cluster.
+  pravegaservice.listening_port:
+    description: TCP port where the SegmentStore will be listening for incoming requests.
+    default: 12345
+  metrics.enable_statistics:
+    description: Whether to enable Metrics Reporting from this Pravega SegmentStore.
+    default: false
+  pravegaservice.thread_pool_size:
+    description: Number of threadpools for pravega service
+  pravegaservice.zk_retry_sleep_ms:
+    description: Number of milliseconds to wait between ZooKeeper retries.
+  pravegaservice.zk_retry_count:
+    description: Number of times to retry a failed attempt to contact ZooKeeper.
+  auto_scale.controller_uri:
+    description: URI for the Pravega Controller
+  auto_scale.request_stream:
+    description: Stream name for internal purposes. Not externally visible.
+    default: _requeststream
+  auto_scale.cooldown_in_seconds:
+    description: Autoscale cool down period in seconds
+  auto_scale.mute_in_seconds:
+    description: Autoscale mute in seconds
+  auto_scale.cache_clean_up_in_seconds:
+    description: Autoscale cache cleanup in seconds
+  auto_scale.cache_expiry_in_seconds:
+    description: Autoscale cache expiry in seconds
+  metrics.dynamic_cache_size:
+    description: Number of dynamic metrics statistic objects to keep in memory at once.
+  metrics.dynamic_ttl_seconds:
+    description: Number of seconds to keep dynamic metric statistic objects in memory.
+  metrics.stats_output_frequency_seconds:
+    description: Number of seconds between statistics reports.
+  metrics.metrics_prefix:
+    description: Prefix to add to all Metrics counters.
+  metrics.enable_csv_reporter:
+    description: Whether to enable CSV reporting.
+  metrics.csv_endpoint:
+    description: CSV reporter target.
+  metrics.enable_statsd_reporter:
+    description: Whether to enable StatsD reporting.
+  metrics.statsd_port:
+    description: StatsD endpoint host name.
+  metrics.statsd_host:
+    description: StatsD endpoint port.
+  metrics.enable_graphite_reporter:
+    description: Whether to enable Graphite reporting.
+  metrics.graphite_host:
+    description: Graphite endpoint host name.
+  metrics.graphite_port:
+    description: Graphite endpoint port.
+  metrics.enable_jmx_reporter:
+    description: Whether to enable JMX reporting.
+  metrics.jmx_domain:
+    description: JMX domain.
+  metrics.enable_ganglia_reporter:
+    description: Whether to enable Ganglia reporting.
+  metrics.ganglia_host:
+    description: Ganglia endpoint host name.
+  metrics.ganglia_port:
+    description: Graphite endpoint port.
+  metrics.enable_console_reporter:
+    description: Whether to enable Console reporting.
+  bookkeeper.bk_ledger_path:
+    description: Default root path for BookKeeper Ledger metadata.
+  bookkeeper.zk_session_timeout_millis:
+    description: ZooKeeper session timeout (millis) for BookKeeper.
+  bookkeeper.zk_connection_timeout_millis:
+    description: ZooKeeper connection timeout (millis) for BookKeeper.
+  bookkeeper.zk_hierarchy_depth:
+    description: Hierarchy depth used for storing BookKeeper log metadata in ZooKeeper.
+  bookkeeper.bk_ensemble_size:
+    description: Ensemble size for BookKeeper ledgers.
+  bookkeeper.bk_ack_quorum_size:
+    description: Write Ack Quorum size for BookKeeper ledgers.
+  bookkeeper.bk_write_quorum_size:
+    description: Write Quorum size for BookKeeper ledgers.
+  bookkeeper.bk_ledger_max_size:
+    description: Maximum Ledger size (bytes) in BookKeeper. Once a Ledger reaches this size, it will be closed and another one open.
+  bookkeeper.zk_metadata_path:
+    description: The ZooKeeper sub-namespace where to store SegmentContainer Log Metadata
+  hdfs.hdfs_root:
+    description: Root path in HDFS where all Pravega-related data for this cluster is located at.
+  hdfs.replication:
+    description: The replication factor for all the data stored in HDFS. This can be used to control the availability of HDFS data.
+  hdfs.block_size:
+    description: The default block size, in bytes, that will be used to exchange data with HDFS.
+  rocksdb.db_dir:
+    description: Path to the working directory where RocksDB can store its databases.
+  durablelog.checkpoint_min_commit_count:
+    description: The minimum number of commits that must be to be accumulated in order to trigger a Metadata Checkpoint.
+  durablelog.checkpoint_commit_count_threshold:
+    description: The number of commits that would trigger a Checkpoint.
+  durablelog.checkpoint_total_commit_length_threshold:
+    description: The number of bytes written that would trigger a Checkpoint.
+  readindex.storage_read_alignment:
+    description: A value with which to align all Tier2 Storage Reads.
+  readindex.memory_read_min_length:
+    description: Minimum number of bytes to return from reads if all these bytes are readily available in memory.
+  readindex.cache_max_size:
+    description: Maximum size (in bytes) for the Read Index cache (shared by all Segment Containers on this Segment Store instance).
+  readindex.cache_max_time_millis:
+    description: Maximum amount of time (in milliseconds) to keep a block of data in the Cache.
+  readindex.cache_generation_time_millis:
+    description: The length of a Cache Generation, in milliseconds.
+  writer.flush_threshold_bytes:
+    description: The minimum number of bytes to wait for before flushing aggregated data for a Segment to Tier2 Storage.
+  writer.flush_threshold_millis:
+    description: The minimum amount of time (in milliseconds) to wait for before flushing aggregated data for a Segment to Tier2 Storage.
+  writer.max_flush_size_bytes:
+    description: The maximum number of bytes that can be flushed with a single write operation.
+  writer.max_items_to_read_at_once:
+    description: The maximum number of items to read every time a read is issued to the DurableLog.
+  writer.min_read_timeout_millis:
+    description: The minimum timeout (in milliseconds) to wait for new items to come into the DurableLog (in case we reached the tail).
+  writer.max_read_timeout_millis:
+    description: The maximum timeout (in milliseconds) to wait for new items to come into the DurableLog (in case we reached the tail).
+  writer.error_sleep_millis:
+    description: The amount of time to sleep (in milliseconds) if an exception was encountered during the execution of a Writer's iteration.
+  writer.flush_timeout_millis:
+    description: The timeout (in milliseconds) for flushing data to Tier2 Storage.
+  writer.ack_timeout_millis:
+    description: The timeout (in milliseconds) for acknowledging data writes (and subsequently truncating Tier1 DurableDataLog).
+  writer.shutdown_timeout_millis:
+    description: The timeout (in milliseconds) for waiting for a proper shutdown.

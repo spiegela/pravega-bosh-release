@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -e
+
+JOB_ROOT=/var/vcap/jobs/pravega-segmentstore
+CONF_DIR=$JOB_ROOT/config
+SYS_ROOT=/var/vcap/sys
+LOG_DIR=$SYS_ROOT/log/pravega-segmentstore
+RUN_DIR=$SYS_ROOT/run/pravega-segmentstore
+PIDFILE=$RUN_DIR/pid
+export JAVA_HOME=/var/vcap/packages/jdk8/jdk
+export PATH=$JAVA_HOME/bin:$PATH
+
+case $1 in
+
+  start)
+    echo $$ > $PIDFILE
+    export PRAVEGA_SEGMENTSTORE_OPTS="\"-Dlog.dir=$LOG_DIR\" \"-Dpravega.configurationFile=$CONF_DIR/config.properties\" \"-Dlogback.configurationFile=$CONF_DIR/logback.xml\""
+
+    exec chpst -u vcap:vcap /var/vcap/packages/pravega/bin/pravega-segmentstore \
+      >>$LOG_DIR/stdout.log \
+      2>>$LOG_DIR/stderr.log
+    ;;
+
+  stop)
+    if [ -f $PIDFILE ]; then
+      kill -9 `cat $PIDFILE` || true
+      rm -f $PIDFILE
+    fi
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+
+esac
+exit 0

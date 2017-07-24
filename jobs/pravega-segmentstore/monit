@@ -1,0 +1,5 @@
+check process pravega-segmentstore
+  with pidfile /var/vcap/sys/run/pravega-segmentstore/pid
+  start program "/var/vcap/jobs/pravega-segmentstore/bin/ctl start"
+  stop program "/var/vcap/jobs/pravega-segmentstore/bin/ctl stop"
+  group vcap
