@@ -2,13 +2,15 @@
 
 set -e
 
-export LOG_DIR=/var/vcap/sys/log/bookkeeper
-export RUN_DIR=/var/vcap/sys/run/bookkeeper
-export PIDFILE=/var/vcap/sys/run/bookkeeper/pid
+LOG_DIR=/var/vcap/sys/log/bookkeeper
+RUN_DIR=/var/vcap/sys/run/bookkeeper
+PIDFILE=$RUN_DIR/pid
+PKG_ROOT=/var/vcap/packages
+
+export JMXDISABLE=1
+export BOOKIE_CONF=/var/vcap/jobs/bookkeeper/config/bk_server.conf
 export JAVA_HOME=/var/vcap/packages/jdk8/jdk
 export PATH=$JAVA_HOME/bin:$PATH
-export BOOKIE_CONF=/var/vcap/jobs/bookkeeper/config/bk_server.conf
-export JMXDISABLE=1
 
 case $1 in
 
@@ -17,16 +19,16 @@ case $1 in
 
     set +e
     # Prepare zookeeper don't exit on error
-    /var/vcap/packages/bookkeeper/bin/bookkeeper shell metaformat -nonInteractive
+    $PKG_ROOT/bookkeeper/bin/bookkeeper shell metaformat -nonInteractive
 
     # Prepare bookie local filesystem
-    /var/vcap/packages/bookkeeper/bin/bookkeeper shell bookieformat -nonInteractive
+    $PKG_ROOT/bookkeeper/bin/bookkeeper shell bookieformat -nonInteractive
     set -e
 
     exec chpst -u vcap:vcap \
-      /var/vcap/packages/bookkeeper/bin/bookkeeper bookie \
-      >>/var/vcap/sys/log/bookkeeper/stdout.log \
-      2>>/var/vcap/sys/log/bookkeeper/stderr.log
+      $PKG_ROOT/bookkeeper/bin/bookkeeper bookie \
+      >>$LOG_DIR/stdout.log \
+      2>>$LOG_DIR/stderr.log
     ;;
 
   stop)
@@ -39,9 +41,9 @@ case $1 in
   status)
     set +e
     echo "Readwrite Nodes:"
-    /var/vcap/packages/bookkeeper/bin/bookkeeper shell listbookies -rw
+    $PKG_ROOT/bookkeeper/bin/bookkeeper shell listbookies -rw
     echo "Readonly Nodes:"
-    /var/vcap/packages/bookkeeper/bin/bookkeeper shell listbookies -ro
+    $PKG_ROOT/bookkeeper/bin/bookkeeper shell listbookies -ro
     ;;
 
   *)

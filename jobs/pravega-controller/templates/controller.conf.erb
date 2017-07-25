@@ -3,36 +3,36 @@ config {
   controller.server {
     zk {
       url = "<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join(",") %>"
-      retryIntervalMS = <%= p('controller.server.zk.retry_interval_ms') %>
-      maxRetries = <%= p('controller.server.zk.max_retries') %>
+      retryIntervalMS = <%= p('zk_retry_interval_ms') %>
+      maxRetries = <%= p('zk_max_retries') %>
     }
-    port = <%= p('controller.server.port') %>
-    asyncTaskPoolSize = <%= p('controller.server.async_task_pool_size') %>
-    serviceHostIp = <%= p('controller.server.service_host_ip') %>
-    serviceHostPort = <%= p('controller.server.service_host_port') %>
-    publishedRPCHost = <%= p('controller.server.published_rpc_host') %>
-    publishedRPCPort = <%= p('controller.server.published_rpc_port') %>
-    cluster = <%= p('controller.server.cluster') %>
-    hostMonitorEnabled = <%= p('controller.server.host_monitor_enabled') %>
-    minRebalanceInterval = <%= p('controller.server.min_rebalance_interval') %>
+    port = <%= p('server_port') %>
+    asyncTaskPoolSize = <%= p('async_task_pool_size') %>
+    serviceHostIp = <%= p('service_host_ip') %>
+    serviceHostPort = <%= p('service_host_port') %>
+    publishedRPCHost = <%= p('published_rpc_host') %>
+    publishedRPCPort = <%= p('published_rpc_port') %>
+    cluster = <%= p('cluster') %>
+    hostMonitorEnabled = <%= p('host_monitor_enabled') %>
+    minRebalanceInterval = <%= p('min_rebalance_interval') %>
     store {
       host {
-        containerCount = <%= p('controller.server.store.host.container_count') %>
+        containerCount = <%= p('container_count') %>
       }
     }
     rest {
-      serverIp = <%= p('controller.server.rest.server_ip') %>
-      serverPort = <%= p('controller.server.rest.server_port') %>
+      serverIp = <%= p('rest_server_ip') %>
+      serverPort = <%= p('rest_server_port') %>
     }
     transaction {
-      maxLeaseValue = <%= p('controller.server.transaction.max_lease_value') %>
-      maxScaleGracePeriod = <%= p('controller.server.transaction.max_scale_grace_period') %>
+      maxLeaseValue = <%= p('transaction_max_lease_value') %>
+      maxScaleGracePeriod = <%= p('transaction_max_scale_grace_period') %>
     }
     internal {
       scale {
-        streamName = <%= p('controller.server.internal.scale.stream_name') %>
+        streamName = <%= p('scale_stream_name') %>
         readerGroup {
-          name = <%= p('controller.server.internal.scale.reader_group') %>
+          name = <%= p('scale_reader_group') %>
         }
       }
     }

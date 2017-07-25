@@ -15,54 +15,59 @@ consumes:
 - name: zookeepers
   type: zookeeper_peers
 
+provides:
+- name: controller
+  type: pravega-controller
+  properties:
+  - server_port
+
 properties:
-  controller.server.cluster:
+  container_count:
+    description: Number of containers
+  cluster:
     description: Unique name for this cluster
     default: pravega-cluster
-  controller.server.port:
+  server_port:
     default: 9090
-  controller.server.async_task_pool_size:
+  async_task_pool_size:
     description: Task pool size for Pravega controller
     default: 80
-  controller.server.service_host_ip:
+  service_host_ip:
     description: Pravega service host IP. Needed for a single node deployment.
     default: localhost
-  controller.server.service_host_port:
+  service_host_port:
     description: Pravega service port value. Needed for a single node deployment.
     default: 12345
-  controller.server.published_rpc_host:
+  published_rpc_host:
     description: The externally visible host name which will be used by clients to access the RPC service.
     default: localhost
-  controller.server.published_rpc_port:
+  published_rpc_port:
     description: The externally visible port value which will be used by clients to access the RPC service.
     default: 9090
-  controller.server.host_monitor_enabled:
+  host_monitor_enabled:
     description: Enable the Zookeeper based segment container monitor
     default: true
-  controller.server.min_rebalance_interval:
+  min_rebalance_interval:
     description: Minimum time between any two rebalance operation in seconds
     default: 10
-  controller.server.zk.retry_interval_ms:
+  zk_retry_interval_ms:
     description: Retry interval in ms for zookeeper connections.
     default: 5000
-  controller.server.zk.max_retries:
+  zk_max_retries:
     description: Number of retries for controller to attempt to zookeeper.
     default: 5
-  controller.server.store.host.container_count:
-    description: Pravega store host container count
-    default: 4
-  controller.server.rest.server_ip:
+  rest_server_ip:
     description: Host address for REST API access
     default: 0.0.0.0
-  controller.server.rest.server_port:
+  rest_server_port:
     description: Port value for REST API access
     default: 9091
-  controller.server.transaction.max_lease_value:
+  transaction_max_lease_value:
     description: Maximum lease value for transactions
     default: 30000
-  controller.server.transaction.max_scale_grace_period:
+  transaction_max_scale_grace_period:
     default: 30000
-  controller.server.internal.scale.stream_name:
+  scale_stream_name:
     default: _requeststream
-  controller.server.internal.scale.reader_group:
+  scale_reader_group:
     default: scaleGroup

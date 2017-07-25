@@ -45,10 +45,13 @@ instance_groups:
     properties: {}
   - name: pravega-controller
     release: pravega
-    properties: {}
+    properties:
+      container_count: 3
   - name: pravega-segmentstore
     release: pravega
-    properties: {}
+    properties:
+      container_count: 3
+      bk_ledger_path: /ledgers
   vm_type: default
   stemcell: default
   persistent_disk: 10240
