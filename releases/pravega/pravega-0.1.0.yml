@@ -1,0 +1,69 @@
+name: pravega
+version: 0.1.0
+commit_hash: 4a38aaf
+uncommitted_changes: false
+jobs:
+- name: bookkeeper
+  version: ee9110397b81ee8ce276678fa9731cfe80dd9b65
+  fingerprint: ee9110397b81ee8ce276678fa9731cfe80dd9b65
+  sha1: 33da264976b64cc06a83be45e40c4767f0bd7f1e
+- name: datanode
+  version: f9666b9e9edbb9b30a1ec4091a0ecbf00c17ffcf
+  fingerprint: f9666b9e9edbb9b30a1ec4091a0ecbf00c17ffcf
+  sha1: 0193880ccb57f8d8525efbdc804e7f52ca1e7227
+- name: namenode
+  version: 4293ddabe583c3045149e0788ba1126e175267bb
+  fingerprint: 4293ddabe583c3045149e0788ba1126e175267bb
+  sha1: 2a77e123021b3babff317fe4a59f8124f1d5e7b7
+- name: pravega-controller
+  version: 5f51d30fdd461de6a3b501c56e73445bb86e3991
+  fingerprint: 5f51d30fdd461de6a3b501c56e73445bb86e3991
+  sha1: df4511952c250e982db67f4c78aa9573023ffa43
+- name: pravega-segmentstore
+  version: a9ab0377fcad67b116a59a2ec6ba09b62048c9dc
+  fingerprint: a9ab0377fcad67b116a59a2ec6ba09b62048c9dc
+  sha1: e14797b455a3b34fd2ed800eb13583033fe52354
+- name: smoke-tests
+  version: 504ebb27be579cbbd7299ec4a8ed5f2339d75cbd
+  fingerprint: 504ebb27be579cbbd7299ec4a8ed5f2339d75cbd
+  sha1: bf65c59c73d5ec60479ecd57d981f269045c4d03
+- name: zookeeper
+  version: da2a7a365ef4c71e3d9bcf9bc9c94996fc094e77
+  fingerprint: da2a7a365ef4c71e3d9bcf9bc9c94996fc094e77
+  sha1: 80f52e4cc56db4004624af2ba68783cf0656e729
+packages:
+- name: bookkeeper
+  version: 2b1e18f8b7fa540815c6859e1e1e0f9596f20b26
+  fingerprint: 2b1e18f8b7fa540815c6859e1e1e0f9596f20b26
+  sha1: 331680bc655d0af8398dcbe22cefbbc734df2d3e
+  dependencies: []
+- name: hadoop
+  version: ebf0138f628a5c45c92c80d3f5ae78157bfc6a35
+  fingerprint: ebf0138f628a5c45c92c80d3f5ae78157bfc6a35
+  sha1: 88015436f8797887f93459acaf8817018aa2763c
+  dependencies: []
+- name: jdk8
+  version: 6c7badbb0a09618d737f8ed7fb95267b41a23e25
+  fingerprint: 6c7badbb0a09618d737f8ed7fb95267b41a23e25
+  sha1: 3095ee60e8a0e9a4c2e2eb96ca65e1c549587262
+  dependencies: []
+- name: pravega
+  version: 7471d0931692578e0dcb3f65ceed0b9df8f1942c
+  fingerprint: 7471d0931692578e0dcb3f65ceed0b9df8f1942c
+  sha1: ac622e3ef2ccafcd5ecd4e048c3a754c13231281
+  dependencies: []
+- name: pravega-standalone-samples
+  version: f6fb1ded126177c4d0714c240ba9d11ba4daf74b
+  fingerprint: f6fb1ded126177c4d0714c240ba9d11ba4daf74b
+  sha1: d90156213e61b0ea42540f412760f3a99aac4bad
+  dependencies:
+  - jdk8
+- name: zookeeper
+  version: cb147d16e1d09942cc677bcc18da9cee5ff3a094
+  fingerprint: cb147d16e1d09942cc677bcc18da9cee5ff3a094
+  sha1: c8bf2baa8117044b4693865c9f22a80dbf22c034
+  dependencies: []
+license:
+  version: 6cf4a7fd3c95a899c7bd6fb104f3966b403aeced
+  fingerprint: 6cf4a7fd3c95a899c7bd6fb104f3966b403aeced
+  sha1: 29e5394d51f54a1c7bb1abe74bff62d288d6ef4d
