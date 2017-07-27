@@ -1,8 +1,8 @@
-# BOSH Release for [Pravega](http://pravega.io) Streaming Storage [WIP]
+# BOSH Release for [Pravega](http://pravega.io) Streaming Storage
 
 ## Current Status
 
-This is a work in progress. Right now, I'm just building up some of the pre-reqs, and working my way towards actual Pravega.
+This release is officially working.  It's currently tested on BOSH on VirtualBox, and looking forward to mulit-cloud testing.
 
 ## Usage
 
@@ -16,6 +16,13 @@ bosh -e $ENV upload-release
 bosh -e $ENV deploy ./manifests/pravega.yml
 ```
 
+### TODO (also reflected in [issues](https://github.com/greshwalk/pravega-bosh-release/issues))
+
+* Add smoke-test errand to ensure post-deploy operations
+* Test in BOSH supported clouds
+* Add options for multiple disks (when BOSH supports them properly)
+* Add support for s3 secondary storage
+
 ### Development
 
 As a developer of this release, create new releases and upload them:
@@ -24,20 +31,3 @@ As a developer of this release, create new releases and upload them:
 ENV=<my BOSH environment alias>
 bosh create-release --force && bosh -e $ENV upload-release
 ```
-
-### Final releases
-
-To share final releases:
-
-```
-bosh create-release --final
-```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
-
-
-```
-bosh create-release --final --version 1.1
-```
-
-After the first release you need to contact [Dmitriy Kalinin](mailto://dkalinin@pivotal.io) to request your project is added to https://bosh.io/releases (as mentioned in README above).
