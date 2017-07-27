@@ -1,0 +1,9 @@
+set -e
+set -u
+
+cd $BOSH_COMPILE_TARGET/pravega-samples
+ls -l
+./gradlew standalone-examples:installDist
+cp -pr standalone-examples/build/install/pravega-standalone-examples/* $BOSH_INSTALL_TARGET
+
+chown -R vcap:vcap $BOSH_INSTALL_TARGET

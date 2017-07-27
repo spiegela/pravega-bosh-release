@@ -1,0 +1,12 @@
+name: smoke-tests
+templates:
+  run.erb: bin/run
+
+consumes:
+- name: conn
+  type: pravega-controller
+
+packages:
+- pravega-standalone-samples
+
+properties: {}

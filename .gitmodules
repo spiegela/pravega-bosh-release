@@ -1,0 +1,3 @@
+[submodule "src/pravega-samples"]
+	path = src/pravega-samples
+	url = https://github.com/pravega/pravega-samples.git

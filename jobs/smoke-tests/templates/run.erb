@@ -1,0 +1,29 @@
+export CONTROLLER=<%= "tcp://#{conn.instances.first.address}:conn.p('server_port')" %>
+export MESSAGE=$$
+
+cd /var/vcap/packages/pravega-stanalone-samples
+
+echo "Writing test string to stream"
+echo "============================="
+
+./bin/helloWorldWriter -u $CONTROLLER -m $MESSAGE
+
+echo "Reading test string to stream"
+echo "============================="
+
+output=($(./bin/helloWorldReader -u $CONTROLLER))
+
+expectations=(
+    "Reading all the events from examples/helloStream"
+    "Read event '$MESSAGE'"
+    "No more events from examples/helloStream"
+)
+
+for i in 0 1 2; do
+    if [ "$output[i]" = "$expectations[i]"  ]; then
+        echo "Error: expected ${output[i]} to equal ${expectations[i]}"
+        exit 1
+    fi
+done
+
+exit 0
