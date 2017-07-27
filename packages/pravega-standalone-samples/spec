@@ -4,4 +4,4 @@ dependencies:
 - jdk8
 
 files:
-  - pravega-samples/*/**
+  - pravega-samples/**/**

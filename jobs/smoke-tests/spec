@@ -8,5 +8,6 @@ consumes:
 
 packages:
 - pravega-standalone-samples
+- jdk8
 
 properties: {}

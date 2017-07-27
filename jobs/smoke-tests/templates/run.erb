@@ -1,7 +1,12 @@
-export CONTROLLER=<%= "tcp://#{conn.instances.first.address}:conn.p('server_port')" %>
-export MESSAGE=$$
+#!/bin/bash
 
-cd /var/vcap/packages/pravega-stanalone-samples
+<% conn = link('conn') -%>
+export CONTROLLER=tcp://<%= "#{conn.instances.first.address}:#{conn.p('server_port')}" %>
+export MESSAGE=$$
+export JAVA_HOME=/var/vcap/packages/jdk8/jdk
+export PATH=$PATH:$JAVA_HOME/bin
+
+cd /var/vcap/packages/pravega-standalone-samples
 
 echo "Writing test string to stream"
 echo "============================="
@@ -11,7 +16,10 @@ echo "============================="
 echo "Reading test string to stream"
 echo "============================="
 
+export oldIFS=$IFS
+export IFS=$'\n'
 output=($(./bin/helloWorldReader -u $CONTROLLER))
+export IFS=$oldIFS
 
 expectations=(
     "Reading all the events from examples/helloStream"
@@ -20,10 +28,11 @@ expectations=(
 )
 
 for i in 0 1 2; do
-    if [ "$output[i]" = "$expectations[i]"  ]; then
+    if [ "${output[$i]}" != "${expectations[$i]}"  ]; then
         echo "Error: expected ${output[i]} to equal ${expectations[i]}"
         exit 1
     fi
 done
 
+echo "Test executed successfully"
 exit 0
