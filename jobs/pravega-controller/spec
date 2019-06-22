@@ -8,7 +8,7 @@ packages:
 templates:
   ctl.erb: bin/ctl
   pre-start.erb: bin/pre-start
-  controller.conf.erb: config/controller.conf
+  controller.conf.erb: config/controller.config.properties
   logback.xml: config/logback.xml
 
 consumes:

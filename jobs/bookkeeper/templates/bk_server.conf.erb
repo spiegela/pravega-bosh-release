@@ -3,6 +3,7 @@ zkServers=<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join
 bookiePort=<%= p('bookie_port') %>
 journalDirectory=<%= p('journal_directory') %>
 ledgerDirectories=<%= p('ledger_directories') %>
+metadataServiceUri=zk+hierarchical://<%= "#{zk.instances.first.address}:#{zk.p('client_port')}" %>/ledgers
 <% if_p('index_directories') do |p| -%>
 indexDirectories=<%= "#{p}\n" -%>
 <% end -%>

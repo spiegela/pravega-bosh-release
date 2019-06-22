@@ -8,3 +8,5 @@ for dir in $LOG_DIR $RUN_DIR; do
   chown vcap:vcap ${dir}
   chmod 700 ${dir}
 done
+
+sudo mount /tmp -o remount,exec

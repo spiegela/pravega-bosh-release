@@ -15,7 +15,7 @@ case $1 in
 
   start)
     echo $$ > $PIDFILE
-    export PRAVEGA_CONTROLLER_OPTS="\"-Dconfig.file=$CONF_DIR/controller.conf\" \"-Dlogback.configurationFile=$CONF_DIR/logback.xml\" \"-Dlog.dir=$LOG_DIR\""
+    export PRAVEGA_CONTROLLER_OPTS="\"-Dconfig.file=$CONF_DIR/controller.config.properties\" \"-Dlogback.configurationFile=$CONF_DIR/logback.xml\" \"-Dlog.dir=$LOG_DIR\""
 
     exec chpst -u vcap:vcap /var/vcap/packages/pravega/bin/pravega-controller \
       >>$LOG_DIR/stdout.log \
