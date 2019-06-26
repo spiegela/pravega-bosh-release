@@ -42,7 +42,7 @@ disk_types:
     - datastore1 (1)
     - datastore1 (2)
     - datastore1 (3)
-  disk_size: 10240
+  disk_size: 51200
   name: local_storage
 - cloud_properties:
     type: thin

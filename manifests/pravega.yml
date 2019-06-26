@@ -25,9 +25,10 @@ instance_groups:
   - name: namenode
     release: pravega
     properties: {}
-  vm_type: large.cpu
+  vm_type: 2xlarge
   stemcell: default
   #persistent_disk: 10240
+  #persistent_disk: 40960
   persistent_disk_type: local_storage
   networks:
   - name: pks-infrastructure
@@ -48,15 +49,16 @@ instance_groups:
   - name: pravega-controller
     release: pravega
     properties:
-      container_count: 3
+      container_count: 10
   - name: pravega-segmentstore
     release: pravega
     properties:
-      container_count: 3
+      container_count: 10
       bk_ledger_path: /ledgers
-  vm_type: large.cpu
+  vm_type: 2xlarge
   stemcell: default
   persistent_disk_type: local_storage
   #persistent_disk: 10240
+  #persistent_disk: 40960
   networks:
   - name: pks-infrastructure
