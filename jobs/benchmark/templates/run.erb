@@ -1,0 +1,13 @@
+#!/bin/bash
+
+<% conn = link('conn') -%>
+export CONTROLLER=tcp://<%= "#{conn.instances.first.address}:#{conn.p('server_port')}" %>
+export JAVA_HOME=/var/vcap/packages/jdk8/jdk
+export PATH=$PATH:$JAVA_HOME/bin
+
+cd /var/vcap/packages/pravega-benchmark
+
+echo "Starting Pravega Benchmark..."
+echo "============================="
+
+./bin/pravega-benchmark -controller $CONTROLLER -stream streamname1 -segments 1 -producers 1 -size 100 -throughput -1 -events 1000000

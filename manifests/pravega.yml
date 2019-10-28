@@ -75,3 +75,16 @@ instance_groups:
   stemcell: default
   networks:
   - name: default
+
+- name: benchmark
+  azs: [z1]
+  lifecycle: errand
+  instances: 1
+  jobs:
+  - name: benchmark
+    release: pravega
+    properties: {}
+  vm_type: default
+  stemcell: default
+  networks:
+  - name: default

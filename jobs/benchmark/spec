@@ -1,0 +1,13 @@
+name: benchmark
+templates:
+  run.erb: bin/run
+
+consumes:
+- name: conn
+  type: pravega-controller
+
+packages:
+- pravega-benchmark
+- jdk8
+
+properties: {}
