@@ -22,7 +22,3 @@ zookeeper/apache-zookeeper-3.5.5.tar.gz:
   size: 3230972
   object_id: 7bd0befe-8a98-48fc-6178-c3d74d68680a
   sha: sha256:60d527254b3816c75a1c46517768b873af5767dfcc2083d6c527b567461c546c
-zookeeper/zookeeper-3.5.3-beta.tar.gz:
-  size: 19452332
-  object_id: 4610c4a2-c954-4dd3-428a-023c13a6a819
-  sha: sha256:4af7834a78e7edeb6d2088b2d2ae6a2621d8756a92e1c5f3dd565b24ffd6a5fc
