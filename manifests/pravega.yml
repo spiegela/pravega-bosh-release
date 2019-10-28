@@ -62,3 +62,16 @@ instance_groups:
   #persistent_disk: 40960
   networks:
   - name: pks-infrastructure
+
+- name: smoke-tests
+  azs: [z1]
+  lifecycle: errand
+  instances: 1
+  jobs:
+  - name: smoke-tests
+    release: pravega
+    properties: {}
+  vm_type: default
+  stemcell: default
+  networks:
+  - name: default
