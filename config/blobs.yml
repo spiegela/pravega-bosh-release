@@ -12,6 +12,7 @@ jdk8/jdk-8u211-linux-x64.tar.gz:
   sha: sha256:c0b7e45330c3f79750c89de6ee0d949ed4af946849592154874d22abc9c4668d
 pravega/pravega-0.6.0.tgz:
   size: 112475864
+  object_id: 7817dfc5-325e-4bb9-6be4-2e1ba0bb48d0
   sha: sha256:d5ece7f0b005edd1ea6d051f7d1d4932186b65589b861d6665e8517c1f9ebfbc
 zookeeper/apache-zookeeper-3.5.5.tar.gz:
   size: 3230972
