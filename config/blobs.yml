@@ -2,10 +2,6 @@ bookkeeper/bookkeeper-all-4.7.3-bin.tar.gz:
   size: 72615385
   object_id: b7cb21e5-5208-4787-47c5-6881ee1d6bde
   sha: sha256:142a6f7cf7133eb2c638c8af52902f822151976f6b5c532eb7236f98e6313847
-hadoop/hadoop-2.7.1.tar.gz:
-  size: 210606807
-  object_id: ff083841-3ddd-4e2f-5f39-a4094d2c650f
-  sha: sha256:991dc34ea42a80b236ca46ff5d207107bcc844174df0441777248fdb6d8c9aa0
 hadoop/hadoop-2.8.5.tar.gz:
   size: 246543928
   object_id: 9f16c7e7-3e25-4736-6bcb-2b79c2e0b69b
