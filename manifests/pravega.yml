@@ -7,7 +7,7 @@ releases:
 
 stemcells:
 - alias: default
-  os: ubuntu-trusty
+  os: ubuntu-xenial
   version: latest
 
 update:
@@ -31,7 +31,7 @@ instance_groups:
   #persistent_disk: 40960
   persistent_disk_type: local_storage
   networks:
-  - name: pks-infrastructure
+  - name: pks-mgmt
 
 - name: pravega
   azs: [az1]
@@ -61,30 +61,30 @@ instance_groups:
   #persistent_disk: 10240
   #persistent_disk: 40960
   networks:
-  - name: pks-infrastructure
+  - name: pks-mgmt
 
 - name: smoke-tests
-  azs: [z1]
+  azs: [az1]
   lifecycle: errand
   instances: 1
   jobs:
   - name: smoke-tests
     release: pravega
     properties: {}
-  vm_type: default
+  vm_type: medium
   stemcell: default
   networks:
-  - name: default
+  - name: pks-mgmt
 
 - name: benchmark
-  azs: [z1]
+  azs: [az1]
   lifecycle: errand
   instances: 1
   jobs:
   - name: benchmark
     release: pravega
     properties: {}
-  vm_type: default
+  vm_type: medium
   stemcell: default
   networks:
-  - name: default
+  - name: pks-mgmt

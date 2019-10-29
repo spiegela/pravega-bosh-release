@@ -1,4 +1,4 @@
 ---
 name: zookeeper
 files:
-- zookeeper/zookeeper-3.5.3-beta.tar.gz
+- zookeeper/apache-zookeeper-3.5.5.tar.gz
