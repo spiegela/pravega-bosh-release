@@ -7,7 +7,7 @@ releases:
 
 stemcells:
 - alias: default
-  os: ubuntu-trusty
+  os: ubuntu-xenial
   version: latest
 
 update:
@@ -19,20 +19,22 @@ update:
 instance_groups:
 
 - name: namenode
-  azs: [z1]
+  azs: [az1]
   instances: 1
   jobs:
   - name: namenode
     release: pravega
     properties: {}
-  vm_type: default
+  vm_type: 2xlarge
   stemcell: default
-  persistent_disk: 10240
+  #persistent_disk: 10240
+  #persistent_disk: 40960
+  persistent_disk_type: local_storage
   networks:
-  - name: default
+  - name: pks-mgmt
 
 - name: pravega
-  azs: [z1, z2, z3]
+  azs: [az1]
   instances: 3
   jobs:
   - name: zookeeper
@@ -47,27 +49,42 @@ instance_groups:
   - name: pravega-controller
     release: pravega
     properties:
-      container_count: 3
+      container_count: 10
   - name: pravega-segmentstore
     release: pravega
     properties:
-      container_count: 3
+      container_count: 10
       bk_ledger_path: /ledgers
-  vm_type: default
+  vm_type: 2xlarge
   stemcell: default
-  persistent_disk: 10240
+  persistent_disk_type: local_storage
+  #persistent_disk: 10240
+  #persistent_disk: 40960
   networks:
-  - name: default
+  - name: pks-mgmt
 
 - name: smoke-tests
-  azs: [z1]
+  azs: [az1]
   lifecycle: errand
   instances: 1
   jobs:
   - name: smoke-tests
     release: pravega
     properties: {}
-  vm_type: default
+  vm_type: medium
   stemcell: default
   networks:
-  - name: default
+  - name: pks-mgmt
+
+- name: benchmark
+  azs: [az1]
+  lifecycle: errand
+  instances: 1
+  jobs:
+  - name: benchmark
+    release: pravega
+    properties: {}
+  vm_type: medium
+  stemcell: default
+  networks:
+  - name: pks-mgmt

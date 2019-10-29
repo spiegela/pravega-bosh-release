@@ -1,4 +1,4 @@
-name: smoke-tests
+name: benchmark
 templates:
   run.erb: bin/run
 
@@ -7,7 +7,7 @@ consumes:
   type: pravega-controller
 
 packages:
-- pravega-client-examples
+- pravega-benchmark
 - jdk8
 
 properties: {}

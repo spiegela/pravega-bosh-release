@@ -1,4 +1,4 @@
 set -e # exit immediately if a simple command exits with a non-zero status
 
-tar xfv hadoop/hadoop-2.7.1.tar.gz --strip-components 1 -C $BOSH_INSTALL_TARGET
+tar xfv hadoop/hadoop-2.8.5.tar.gz --strip-components 1 -C $BOSH_INSTALL_TARGET
 chown -R vcap:vcap $BOSH_INSTALL_TARGET

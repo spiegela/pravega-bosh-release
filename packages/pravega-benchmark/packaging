@@ -1,0 +1,4 @@
+set -e
+
+tar xfv pravega/pravega-benchmark-0.5.0.tgz --strip-components 1 -C $BOSH_INSTALL_TARGET
+chown -R vcap:vcap $BOSH_INSTALL_TARGET

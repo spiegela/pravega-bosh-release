@@ -27,6 +27,7 @@ properties:
     description: Number of containers
   bk_ledger_path:
     description: Location of ledger metadata within zookeeper key space
+    default: /ledgers
   listening_port:
     description: TCP port where the SegmentStore will be listening for incoming requests.
     default: 12345

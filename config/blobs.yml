@@ -1,20 +1,28 @@
-bookkeeper/bookkeeper-server-4.4.0-bin.tar.gz:
-  size: 9890319
-  object_id: 09715b83-1e69-46c4-9aff-7f22fc16d167
-  sha: 8d020d9fd747d2edce7fb1d4fde51aabc7334c2a
-hadoop/hadoop-2.7.1.tar.gz:
-  size: 210606807
-  object_id: 1f96f1ac-a6d5-425f-8e92-fcbbd9e22f51
-  sha: 8aa2e1e8dbe0efeb2e98ac24c0eae37c5f94764c
-jdk8/jdk-8u131-linux-x64.tar.gz:
-  size: 185540433
-  object_id: 0a58a92c-bd4e-471d-82b5-0eaa523fb430
-  sha: c2a5582c049beb5c7af6b87a469bc53b759b7b87
-pravega/pravega-0.1.0-1404.04e62df.tgz:
-  size: 80862120
-  object_id: 451f3994-36f8-4f4c-b35e-f14b4801bb1d
-  sha: adf83cca124d2c1eb24058ede3575d5d2e84b44f
-zookeeper/zookeeper-3.5.3-beta.tar.gz:
-  size: 18808241
-  object_id: 730caef7-47d0-4b03-6c3b-d8165cb505dc
-  sha: 417da6fa8ed6d4fee9cdbbf18e4b441bc3e791fe
+bookkeeper/bookkeeper-all-4.7.3-bin.tar.gz:
+  size: 72615385
+  object_id: b7cb21e5-5208-4787-47c5-6881ee1d6bde
+  sha: sha256:142a6f7cf7133eb2c638c8af52902f822151976f6b5c532eb7236f98e6313847
+hadoop/hadoop-2.8.5.tar.gz:
+  size: 246543928
+  object_id: 9f16c7e7-3e25-4736-6bcb-2b79c2e0b69b
+  sha: sha256:f9c726df693ce2daa4107886f603270d66e7257f77a92c9886502d6cd4a884a4
+jdk8/jdk-8u211-linux-x64.tar.gz:
+  size: 194990602
+  object_id: 2601771c-c996-4b65-7045-fed3091e2a04
+  sha: sha256:c0b7e45330c3f79750c89de6ee0d949ed4af946849592154874d22abc9c4668d
+pravega/pravega-0.6.0.tgz:
+  size: 112475864
+  object_id: 7817dfc5-325e-4bb9-6be4-2e1ba0bb48d0
+  sha: sha256:d5ece7f0b005edd1ea6d051f7d1d4932186b65589b861d6665e8517c1f9ebfbc
+pravega/pravega-benchmark-0.5.0.tgz:
+  size: 19753844
+  object_id: 14ab5f45-7e14-41ab-7b81-990ad6f42aee
+  sha: sha256:29b66c8edadf0bc4badb7a45006bcbf08acaa1089056f2dc3af0d059a5a9a7bf
+pravega/pravega-client-examples-0.5.0.tgz:
+  size: 20458700
+  object_id: 98cfcb9d-f35e-4d7c-7313-acac4a79334c
+  sha: sha256:f3048d026618624dd0cbb76fec6c1f1180539e4d249c6807fffb3ba5037a1edc
+zookeeper/apache-zookeeper-3.5.5.tar.gz:
+  size: 3230972
+  object_id: 7bd0befe-8a98-48fc-6178-c3d74d68680a
+  sha: sha256:60d527254b3816c75a1c46517768b873af5767dfcc2083d6c527b567461c546c

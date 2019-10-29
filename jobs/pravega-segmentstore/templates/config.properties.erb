@@ -5,175 +5,24 @@
 pravegaservice.clusterName=<%= p('cluster_name') %>
 pravegaservice.containerCount=<%= p('container_count') %>
 pravegaservice.listeningPort=<%= p('listening_port') %>
-bookkeeper.bkLedgerPath=<%= p('bk_ledger_path') %>
-<% if_p('thread_pool_size') do |p| -%>
-pravegaservice.threadPoolSize=<%= "#{p}\n" -%>
-<% end -%>
-pravegaservice.zkURL=<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join(",") %>
-<% if_p('zk_retry_sleep_ms') do |p| -%>
-pravegaservice.zkRetrySleepMs=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('zk_retry_count') do |p| -%>
-pravegaservice.zkRetryCount=<%= "#{p}\n" -%>
-<% end -%>
+pravegaservice.zkURL=<%= "#{zk.instances.first.address}:#{zk.p('client_port')}" %>
+pravegaservice.dataLogImplementation=BOOKKEEPER
+pravegaservice.storageImplementation=HDFS
+pravegaservice.cacheMaxSize=17179869184
 autoScale.controllerUri=tcp://<%= "#{controller_addr}:#{controllers.p('server_port')}" %>
-autoScale.requestStream=<%= p('request_stream') %>
-<% if_p('cooldown_in_seconds') do |p| -%>
-autoScale.cooldownInSeconds=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('mute_in_seconds') do |p| -%>
-autoScale.muteInSeconds=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('cache_clean_up_in_seconds') do |p| -%>
-autoScale.cacheCleanUpInSeconds=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('cache_expiry_in_seconds') do |p| -%>
-autoScale.cacheExpiryInSeconds=<%= "#{p}\n" -%>
-<% end -%>
-metrics.enableStatistics=<%= p('enable_statistics') %>
-<% if_p('dynamic_cache_size') do |p| -%>
-metrics.dynamicCacheSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('dynamic_ttl_seconds') do |p| -%>
-metrics.dynamicTTLSeconds=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('stats_output_frequency_seconds') do |p| -%>
-metrics.statsOutputFrequencySeconds=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('metrics_prefix') do |p| -%>
-metrics.metricsPrefix=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_csv_reporter') do |p| -%>
-metrics.enableCSVReporter=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('csv_endpoint') do |p| -%>
-metrics.csvEndpoint=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_statsd_reporter') do |p| -%>
-metrics.enableStatsdReporter=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('statsd_port') do |p| -%>
-metrics.statsDPort=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('statsd_host') do |p| -%>
-metrics.statsDHost=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_graphite_reporter') do |p| -%>
-metrics.enableGraphiteReporter=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('graphite_host') do |p| -%>
-metrics.graphiteHost=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('graphite_port') do |p| -%>
-metrics.graphitePort=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_jmx_reporter') do |p| -%>
-metrics.enableJMXReporter=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('jmx_domain') do |p| -%>
-metrics.jmxDomain=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_ganglia_reporter') do |p| -%>
-metrics.enableGangliaReporter=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('ganglia_host') do |p| -%>
-metrics.gangliaHost=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('ganglia_port') do |p| -%>
-metrics.gangliaPort=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('enable_console_reporter') do |p| -%>
-metrics.enableConsoleReporter=<%= "#{p}\n" -%>
-<% end -%>
-bookkeeper.zkAddress=<%= zk.instances.map{ |i| "#{i.address}:#{zk.p('client_port')}" }.join(",") %>
-<% if_p('zk_session_timeout_millis') do |p| -%>
-bookkeeper.zkSessionTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('zk_connection_timeout_millis') do |p| -%>
-bookkeeper.zkConnectionTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('zk_hierarchy_depth') do |p| -%>
-bookkeeper.zkHierarchyDepth=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('bk_ensemble_size') do |p| -%>
-bookkeeper.bkEnsembleSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('bk_ack_quorum_size') do |p| -%>
-bookkeeper.bkAckQuorumSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('bk_write_quorum_size') do |p| -%>
-bookkeeper.bkWriteQuorumSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('bk_ledger_max_size') do |p| -%>
-bookkeeper.bkLedgerMaxSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('zk_metadata_path') do |p| -%>
-bookkeeper.zkMetadataPath=<%= "#{p}\n" -%>
-<% end -%>
-hdfs.hdfsUrl=<%= "#{nn.instances.first.address}:#{nn.p('dfs.port')}" -%>
-<% if_p('hdfs_root') do |p| -%>
- hdfs.hdfsRoot=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('replication') do |p| -%>
-hdfs.replication=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('block_size') do |p| -%>
-hdfs.blockSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('rocksdb.db_dir') do |p| -%>
-rocksdb.dbDir=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('checkpoint_min_commit_count') do |p| -%>
-durablelog.checkpointMinCommitCount=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('checkpoint_commit_count_threshold') do |p| -%>
-durablelog.checkpointCommitCountThreshold=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('checkpoint_total_commit_length_threshold') do |p| -%>
-durablelog.checkpointTotalCommitLengthThreshold=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('storage_read_alignment') do |p| -%>
-readindex.storageReadAlignment=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('memory_read_min_length') do |p| -%>
-readindex.memoryReadMinLength=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('cache_max_size') do |p| -%>
-readindex.cacheMaxSize=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('cache_max_time_millis') do |p| -%>
-readindex.cacheMaxTimeMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('cache_generation_time_millis') do |p| -%>
-readindex.cacheGenerationTimeMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('flush_threshold_bytes') do |p| -%>
-writer.flushThresholdBytes=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('flush_threshold_millis') do |p| -%>
-writer.flushThresholdMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('max_flush_size_bytes') do |p| -%>
-writer.maxFlushSizeBytes=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('max_items_to_read_at_once') do |p| -%>
-writer.maxItemsToReadAtOnce=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('min_read_timeout_millis') do |p| -%>
-writer.minReadTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('max_read_timeout_millis') do |p| -%>
-writer.maxReadTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('error_sleep_millis') do |p| -%>
-writer.errorSleepMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('flush_timeout_millis') do |p| -%>
-writer.flushTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('ack_timeout_millis') do |p| -%>
-writer.ackTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
-<% if_p('shutdown_timeout_millis') do |p| -%>
-writer.shutdownTimeoutMillis=<%= "#{p}\n" -%>
-<% end -%>
+metrics.enableStatistics=false
+metrics.enableCSVReporter=false
+metrics.enableStatsdReporter=false
+bookkeeper.zkAddress=<%= "#{zk.instances.first.address}:#{zk.p('client_port')}" %>
+bookkeeper.bkLedgerPath=<%= p('bk_ledger_path') %>
+hdfs.hdfsUrl=<%= "#{nn.instances.first.address}:#{nn.p('dfs.port')}" %>
+hdfs.hdfsRoot=/proot
+hdfs.replication=3
+hdfs.blockSize=134217728
+rocksdb.dbDir=/tmp/pravega/cache
+rocksdb.writeBufferSizeMB=512
+rocksdb.readCacheSizeMB=1024
+rocksdb.cacheBlockSizeKB=32
+writer.flushThresholdBytes=4194304
+writer.flushThresholdMillis=6000
+writer.maxFlushSizeBytes=134217728
