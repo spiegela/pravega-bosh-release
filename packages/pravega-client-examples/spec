@@ -1,0 +1,5 @@
+---
+name: pravega-client-examples
+
+files:
+- pravega/pravega-client-examples-0.5.0.tgz

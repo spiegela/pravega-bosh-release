@@ -7,7 +7,7 @@ consumes:
   type: pravega-controller
 
 packages:
-- pravega-standalone-samples
+- pravega-client-examples
 - jdk8
 
 properties: {}

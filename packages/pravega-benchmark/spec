@@ -1,7 +1,5 @@
 ---
-name: pravega-standalone-samples
-dependencies:
-- jdk8
+name: pravega-benchmark
 
 files:
-  - pravega-benchmark/**/**
+- pravega/pravega-benchmark-0.5.0.tgz
