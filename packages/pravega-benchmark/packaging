@@ -1,12 +1,4 @@
 set -e
-set -u
 
-export JAVA_HOME=/var/vcap/packages/jdk8/jdk
-export PATH=$JAVA_HOME/bin:$PATH
-
-pushd pravega-benchmark
-./gradlew build
-tar -xvf ./build/distributions/pravega-benchmark.tar -C $BOSH_INSTALL_TARGET
-popd
-
+tar xfv pravega/pravega-benchmark-0.5.0.tgz --strip-components 1 -C $BOSH_INSTALL_TARGET
 chown -R vcap:vcap $BOSH_INSTALL_TARGET

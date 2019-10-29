@@ -14,6 +14,14 @@ pravega/pravega-0.6.0.tgz:
   size: 112475864
   object_id: 7817dfc5-325e-4bb9-6be4-2e1ba0bb48d0
   sha: sha256:d5ece7f0b005edd1ea6d051f7d1d4932186b65589b861d6665e8517c1f9ebfbc
+pravega/pravega-benchmark-0.5.0.tgz:
+  size: 19753844
+  object_id: 14ab5f45-7e14-41ab-7b81-990ad6f42aee
+  sha: sha256:29b66c8edadf0bc4badb7a45006bcbf08acaa1089056f2dc3af0d059a5a9a7bf
+pravega/pravega-client-examples-0.5.0.tgz:
+  size: 20458700
+  object_id: 98cfcb9d-f35e-4d7c-7313-acac4a79334c
+  sha: sha256:f3048d026618624dd0cbb76fec6c1f1180539e4d249c6807fffb3ba5037a1edc
 zookeeper/apache-zookeeper-3.5.5.tar.gz:
   size: 3230972
   object_id: 7bd0befe-8a98-48fc-6178-c3d74d68680a

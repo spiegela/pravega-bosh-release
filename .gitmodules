@@ -1,6 +1,0 @@
-[submodule "src/pravega-samples"]
-	path = src/pravega-samples
-	url = https://github.com/pravega/pravega-samples.git
-[submodule "src/pravega-benchmark"]
-	path = src/pravega-benchmark
-	url = https://github.com/pravega/pravega-benchmark.git

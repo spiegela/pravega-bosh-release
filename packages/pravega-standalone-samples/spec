@@ -1,7 +1,0 @@
----
-name: pravega-standalone-samples
-dependencies:
-- jdk8
-
-files:
-  - pravega-samples/**/**
