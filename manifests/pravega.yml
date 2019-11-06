@@ -3,7 +3,7 @@ name: pravega-chrisb
 
 releases:
 - name: pravega
-  version: latest
+  version: 1-chrisb
 
 stemcells:
 - alias: default
