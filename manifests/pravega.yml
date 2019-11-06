@@ -1,5 +1,5 @@
 ---
-name: pravega
+name: pravega-chrisb
 
 releases:
 - name: pravega
@@ -28,8 +28,7 @@ instance_groups:
   vm_type: 2xlarge
   stemcell: default
   #persistent_disk: 10240
-  #persistent_disk: 40960
-  persistent_disk_type: local_storage
+  persistent_disk: 40960
   networks:
   - name: pks-mgmt
 
@@ -38,6 +37,9 @@ instance_groups:
   instances: 3
   jobs:
   - name: zookeeper
+    release: pravega
+    properties: {}
+  - name: enable-keycloak-auth
     release: pravega
     properties: {}
   - name: datanode
@@ -57,9 +59,8 @@ instance_groups:
       bk_ledger_path: /ledgers
   vm_type: 2xlarge
   stemcell: default
-  persistent_disk_type: local_storage
   #persistent_disk: 10240
-  #persistent_disk: 40960
+  persistent_disk: 40960
   networks:
   - name: pks-mgmt
 
